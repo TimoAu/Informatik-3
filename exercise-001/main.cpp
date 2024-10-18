@@ -17,9 +17,14 @@ auto print_vector(std::vector<int> &vec1, int &counter)
 
 auto sort_vector(std::vector<int> vec1, int &count_var)
 {
-
+    auto start = std::chrono::system_clock::now();
     std::sort(vec1.begin(),vec1.end());//Sorting the vector
+    auto end = std::chrono::system_clock::now();
+    
     print_vector(vec1, count_var);
+    
+    auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
+    fmt::print("\nSortieren des Vektors dauerte {}", elapsed);
     return 0;
 }
 
@@ -63,6 +68,7 @@ auto main(int argc, char **argv) -> int
     
     fmt::print("\nSortierte Vektorelemente sind: ");
     sort_vector(vec, count);
+
     return 0; /* exit gracefully*/
 }
 
