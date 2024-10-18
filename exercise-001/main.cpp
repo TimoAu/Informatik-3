@@ -1,16 +1,26 @@
 #include <fmt/chrono.h>
 #include <fmt/format.h>
-
+#include<iostream>    
+#include<vector> 
+#include<algorithm>
 #include "CLI/CLI.hpp"
 #include "config.h.in"
 
 auto print_vector(std::vector<int> &vec1, int &counter)
 {
-    fmt::print("Vektorelemente sind: ");
+    //oder std::cout << fmt::format("[{}]", fmt::join(*vec1, ","))<<std::endl;
     for(int i= 0; i<counter; i++)
     {
         fmt::print("{} , ", vec1[i]);
     }
+}
+
+auto sort_vector(std::vector<int> vec1, int &count_var)
+{
+
+    std::sort(vec1.begin(),vec1.end());//Sorting the vector
+    print_vector(vec1, count_var);
+    return 0;
 }
 
 auto main(int argc, char **argv) -> int
@@ -48,7 +58,11 @@ auto main(int argc, char **argv) -> int
         int random = rand()%100;
         vec.push_back(random);
     }
+    fmt::print("Vektorelemente sind: ");
     print_vector(vec, count);
+    
+    fmt::print("\nSortierte Vektorelemente sind: ");
+    sort_vector(vec, count);
     return 0; /* exit gracefully*/
 }
 
