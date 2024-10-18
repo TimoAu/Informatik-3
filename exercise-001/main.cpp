@@ -58,12 +58,14 @@ auto main(int argc, char **argv) -> int
     /* INSERT YOUR CODE HERE */
     std::cout<<count;
     std::vector<int> vec;
+    
     for(int i=0;i<count;i++)
     {
         int random = rand()%100;
         vec.push_back(random);
     }
-    fmt::print("Vektorelemente sind: ");
+    
+    fmt::print("\nVektorelemente sind: ");
     print_vector(vec, count);
     
     fmt::print("\nSortierte Vektorelemente sind: ");
