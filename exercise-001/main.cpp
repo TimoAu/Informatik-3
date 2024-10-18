@@ -4,6 +4,15 @@
 #include "CLI/CLI.hpp"
 #include "config.h.in"
 
+auto print_vector(std::vector<int> &vec1, int &counter)
+{
+    fmt::print("Vektorelemente sind: ");
+    for(int i= 0; i<counter; i++)
+    {
+        fmt::print("{} , ", vec1[i]);
+    }
+}
+
 auto main(int argc, char **argv) -> int
 {
     /**
@@ -39,10 +48,7 @@ auto main(int argc, char **argv) -> int
         int random = rand()%100;
         vec.push_back(random);
     }
-
-    for(int i= 0; i<count; i++){
-        std::cout<<vec[i];
-        std::cout<<std::endl;
-    }
+    print_vector(vec, count);
     return 0; /* exit gracefully*/
 }
+
