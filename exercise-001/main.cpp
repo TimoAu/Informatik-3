@@ -2,7 +2,7 @@
 #include <fmt/format.h>
 
 #include "CLI/CLI.hpp"
-#include "config.h"
+#include "config.h.in"
 
 auto main(int argc, char **argv) -> int
 {
@@ -11,9 +11,12 @@ auto main(int argc, char **argv) -> int
      * More info at https://github.com/CLIUtils/CLI11#usage
      */
     CLI::App app{PROJECT_NAME};
+    
+    int count = 20;
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
+        app.add_option("-c,--count", count, "Insert Count");
         app.parse(argc, argv);
     }
     catch (const CLI::ParseError &e)
@@ -29,6 +32,7 @@ auto main(int argc, char **argv) -> int
     fmt::print("Hello, {}!\n", app.get_name());
 
     /* INSERT YOUR CODE HERE */
+    std::cout<<count;
 
     return 0; /* exit gracefully*/
 }
