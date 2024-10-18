@@ -16,7 +16,7 @@ auto main(int argc, char **argv) -> int
     try
     {
         app.set_version_flag("-V,--version", fmt::format("{} {}", PROJECT_VER, PROJECT_BUILD_DATE));
-        app.add_option("-c,--count", count, "Insert Count");
+        app.add_option("-c,--count", count, "Insert Count");        //add option to change count in Terminal
         app.parse(argc, argv);
     }
     catch (const CLI::ParseError &e)
@@ -33,6 +33,16 @@ auto main(int argc, char **argv) -> int
 
     /* INSERT YOUR CODE HERE */
     std::cout<<count;
+    std::vector<int> vec;
+    for(int i=0;i<count;i++)
+    {
+        int random = rand()%100;
+        vec.push_back(random);
+    }
 
+    for(int i= 0; i<count; i++){
+        std::cout<<vec[i];
+        std::cout<<std::endl;
+    }
     return 0; /* exit gracefully*/
 }
