@@ -6,6 +6,7 @@
 #include "CLI/CLI.hpp"
 #include "config.h.in"
 
+
 auto main(int argc, char **argv) -> int
 {
     /**
@@ -31,7 +32,7 @@ auto main(int argc, char **argv) -> int
      * it is much more convenient than std::cout and printf
      * More info at https://fmt.dev/latest/api.html
      */
-    fmt::println("Hello Exercise number two");
+    fmt::println("Exercise 2")
 
     return 0; /* exit gracefully*/
 }
