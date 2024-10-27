@@ -2,96 +2,71 @@
 #include <fmt/format.h>
 #include<iostream>    
 
-MyVector::MyVector()
+myVector::myVector()
 {
-    data =nullptr;
+    data = nullptr;
     size_vec = 0;
-    fmt::println("Vektor wurde erstellt mit Null Elementen");
 }
 
-/*MyVector::MyVector(unsigned int size)
+myVector::myVector(unsigned int lenght, int init[])
 {
-    size_vec = size;
-    for(int i= 0; i<size; i++)
+    data = new int[lenght];
+    for(int i = 0; i<lenght; i++)
     {
-        data= new int;
-        data++
+        data[i] =init[i];
     }
-    for(int i = 0; i<size; i++)
-    {
-        data--;
-    }
-    fmt::println("Vektor wurde erstellt mit {} Elementen", size);
-}*/
-
-MyVector::~MyVector()
+    size_vec = lenght;
+}
+myVector::~myVector()
 {
-    for(int i = 0; i< size_vec; i++)
-    {
-        delete data;
-        data++;
-        
-    }
-    fmt::println("Der allokierte Speicher wurde freigegeben");
+    delete[] data;
+    fmt::println("allokierter Speicher wurde freigegeben");
 }
 
-const int MyVector::size()
+const int myVector::at(unsigned int idx)
 {
-    fmt::println("Der Vektor hat die Größe {}", size_vec);
-    return size_vec;
+    return data[idx-1];
 }
 
-const int MyVector::at(int index)
-{
-    for(int i = 0; i<index; i++)
-    {
-        data++;
-    }
-    int data_idx = *data;
-    
-    for(int i = 0; i<index; i++)
-    {
-        data--;
-    }
-    fmt::print("An der Stelle {} ist der Wert {} gespeichert",index, data_idx);
-    return data_idx;
-}
-
-void MyVector::pushback(unsigned int number)
+void myVector::pushback(int data)
 {
     if(size_vec == 0)
     {
-        data = new int;
-        *data = number;
-       //size_vec = size_vec+1;
-
-    }
-    if(size_vec != 0){
-    for(int i = 0; i<size_vec+1; i++)
+        this->data = new int[1];
+        this->data[0] = data;
+        size_vec = 1;
+    }else
     {
-        data++;
+        this->data = CreateNewArray(this->data);
+        this->data[(size_vec)]= data;
+        size_vec++;
     }
-    data = new int;
-    *data = number;
-    for(int i = 0; i<size_vec+1;i++)
-    {
-        data--;
-    }
-    }
-    size_vec= size_vec+1;
 }
-
-
-
+int *myVector::CreateNewArray(int *oldArray)
+{
+    int* newArray = new int[size_vec +1];
+    for(int i = 0; i<size_vec; i++)
+    {
+        int buffer;
+        buffer= oldArray[i];
+        newArray[i]= buffer;
+    }
+    delete[] oldArray;
+    return newArray;
+}
 
 auto main() ->int
 {
-    MyVector Vector1;
-    Vector1.pushback(1);
-    Vector1.size();
-    Vector1.pushback(2);
-    Vector1.pushback(3);
-    Vector1.at(2);
-    return 0;
+    myVector Vector1;
+    Vector1.pushback(10);
+    Vector1.pushback(20);
+    Vector1.pushback(30);
+    fmt::println("Wert an Stelle 2 ist{}", Vector1.at(1));
+    int testArray[3]= {1,2,3};
+    myVector Vector2(3,testArray);
+    Vector2.pushback(4);
+    Vector2.pushback(5);
+    for(int i = 1; i<6;i++){
+    fmt::println("Wert an Stelle {} ist{}",i, Vector2.at(i));
+    }
 }
-
