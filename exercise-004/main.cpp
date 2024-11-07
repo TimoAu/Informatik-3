@@ -7,7 +7,7 @@ myVector::myVector() {
     size_vec = 10;
     filled_spaces = 0;
     count_expansions = 0;
-}
+} 
 
 myVector::myVector(unsigned int length, int init[]) {
     data = new int[10];
